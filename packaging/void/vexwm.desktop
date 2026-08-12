@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=VexWM
+Comment=Lightweight configurable Wayland compositor
+Exec=vexwm
+Type=Application
+DesktopNames=VexWM

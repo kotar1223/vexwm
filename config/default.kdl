@@ -1,0 +1,51 @@
+input {
+    keyboard {
+        layout "us,ru"
+        options "grp:win_space_toggle"
+        repeat-rate 50
+        repeat-delay 300
+    }
+    touchpad {
+        tap true
+        natural-scroll true
+    }
+}
+
+layout {
+    gaps 8
+    outer-gaps 12
+    main-ratio 0.55
+    smart-gaps true
+    focus-follows-mouse false
+}
+
+cursor {
+    theme "Adwaita"
+    size 24
+}
+
+xwayland {
+    enabled true
+}
+
+binds {
+    Mod+Return spawn "foot"
+    Mod+D spawn "fuzzel"
+    Mod+Q close
+    Mod+Shift+E exit
+    Mod+R reload-config
+    Mod+H focus left
+    Mod+J focus down
+    Mod+K focus up
+    Mod+L focus right
+    Mod+Shift+H move left
+    Mod+Shift+J move down
+    Mod+Shift+K move up
+    Mod+Shift+L move right
+    Mod+Space toggle-float
+    Mod+F fullscreen
+}
+
+autostart {
+    command "mako"
+}

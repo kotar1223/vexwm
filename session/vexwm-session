@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+export XDG_CURRENT_DESKTOP=VexWM
+export XDG_SESSION_DESKTOP=vexwm
+export XDG_SESSION_TYPE=wayland
+export MOZ_ENABLE_WAYLAND=1
+export QT_QPA_PLATFORM=wayland
+export SDL_VIDEODRIVER=wayland
+
+# Void uses runit, so do not assume systemd is available.
+if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+    dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE || true
+fi
+
+if command -v nvidia-smi >/dev/null 2>&1; then
+    export GBM_BACKEND=nvidia-drm
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export WLR_NO_HARDWARE_CURSORS=${WLR_NO_HARDWARE_CURSORS:-1}
+fi
+
+command -v mako >/dev/null 2>&1 && mako &
+command -v quickshell >/dev/null 2>&1 && quickshell -c vexwm &
+exec vexwm --config "${VEXWM_CONFIG:-$HOME/.config/vexwm/config.kdl}"

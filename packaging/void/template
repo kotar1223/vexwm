@@ -1,0 +1,19 @@
+# Template for Void Linux xbps-src
+pkgname=vexwm
+version=0.1.0
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="wayland-devel wayland-protocols libinput-devel libxkbcommon-devel mesa-devel"
+dependsonly="no"
+short_desc="Lightweight configurable Wayland compositor"
+maintainer="YOUR_NAME <you@example.com>"
+license="MIT"
+homepage="https://github.com/YOUR_USERNAME/vexwm"
+distfiles="https://github.com/YOUR_USERNAME/vexwm/archive/refs/tags/v${version}.tar.gz"
+checksum=SKIP
+
+post_install() {
+    vinstall config/default.kdl 644 usr/share/vexwm default.kdl
+    vlicense LICENSE
+}
